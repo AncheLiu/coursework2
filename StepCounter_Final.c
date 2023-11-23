@@ -170,6 +170,7 @@ int main() {
         case 'Q':
         case 'q':
             go = 0;
+            return 0;
             break;
         default:
             printf("Invalid choice. Try again.\n\n");
