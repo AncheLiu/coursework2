@@ -120,7 +120,7 @@ int main() {
                     num = i;
                 }
             }
-            printf("Fewest steps: %s %s\n\n", data[num].date, data[num].time);
+            printf("Largest steps: %s %s\n\n", data[num].date, data[num].time);
             break;
         }
         case 'E':
