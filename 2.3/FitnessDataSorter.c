@@ -53,7 +53,7 @@ int main() {
     printf("Enter Filename: ");
     scanf("%s", filename);
     strcpy(target, filename);
-    strcat(target, ".txt");
+    strcat(target, ".tsv");
     
     FILE *file = fopen(filename, "r");
     if (!file)
@@ -62,28 +62,19 @@ int main() {
         return 1;
     }
     int count = 0;
-    while (fgets(line, 1000, file))
+    while (fgets(line, 100, file))
     {
         tokeniseRecord(line, ',', data[count].date, data[count].time, &data[count].steps);
+        
+        if (data[count].steps == 0)
+        {
+            printf("Error: invalid file\n");
+            return 1;
+        }
         count++;
     }
-    fclose(file);
-    int a = strlen(data[0].date);
-    int b = strlen(data[0].time);
-    for (int i = 0; i < count; i++)
-    {
-        if (strlen(data[i].date) != a)
-        {
-            printf("Error: invalid file\n");
-            return 1;
-        }
-        if (strlen(data[i].time) != b)
-        {
-            printf("Error: invalid file\n");
-            return 1;
-        }
-    }
     
+
     printf("Data sorted and written to %s\n",target);
     FILE *file1 = fopen(target, "w+");
     Sort(data, count);

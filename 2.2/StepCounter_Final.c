@@ -75,7 +75,7 @@ int main() {
                 exit(1);
                 break;
             }
-            while (fgets(line, 1000, file))
+            while (fgets(line, 100, file))
             {
                 tokeniseRecord(line, ",", data[count].date, data[count].time, steps);
                 data[count].steps = atoi(steps);
@@ -131,15 +131,9 @@ int main() {
             {
                 total += data[i].steps;
             }
-            float mean;
-            mean = total/count;
-            int mean_int;
-            mean_int = total/count;
-            if ((mean - mean_int) > 0.5)
-            {
-                mean_int ++;
-            }
-            printf("Mean step count: %d\n\n", mean_int);
+            int mean = (total + count / 2) / count;
+
+            printf("Mean step count: %d\n\n", mean);
             break;
         }
         case 'F':
